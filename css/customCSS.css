@@ -1,0 +1,507 @@
+@font-face {
+    font-family:'Alexbrush';
+    src: url('../res/Alexbrush.ttf');
+}
+
+@font-face {
+    font-family:'Comiz';
+    src: url(../res/SchoolNotes.ttf);
+}
+
+/*Global*/
+
+body {
+    margin-top: 0%;
+    overflow: scroll;
+}
+
+
+.alexbrush {
+    font-family: Alexbrush;
+}
+
+.comiz {
+    font-family: Comiz;
+}
+
+mayuscula{
+    color: red;   
+}
+
+.portadaBotones {
+    margin-top:1%;
+}
+
+.row {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+/*Principal*/
+#encabezado {
+    margin-top:-50px;
+    font-family:Alexbrush;
+    font-size: 4em;
+    
+}
+
+.resize-dupla{
+    width:80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25%;
+    margin-bottom: -10%;
+}
+
+.resize-dupla:hover{
+    cursor:pointer;
+}
+
+.iconos{
+	display:table;
+    width:100%;
+    table-layout: fixed;
+}
+
+.iconos a{
+    display:table-cell;
+    margin-left:1px;
+    width:20%;
+}
+
+
+.iconos a:hover img{
+	text-decoration:none;
+    opacity: 0.4;
+    transition: opacity .25s ease-in-out;
+}
+
+
+.navegacion {
+    display:table;
+    margin-bottom: 0px;
+    margin-top: -1%;
+    margin-bottom: -1%;
+}
+
+.navegacion > li{
+    display: table-cell;
+    text-align: center;
+    padding: 0px;
+    margin-bottom:0px;
+    font-family: Comiz;
+}
+
+.navegacion > li > a {
+    text-decoration:none;
+    color: black;
+    font-size: 350%;
+}
+
+.navegacion > li > a:hover{
+    font-weight: bold;
+	text-decoration:none;
+    cursor:pointer;
+	}
+
+hr{
+    margin-top: 5px; 
+    border-color:black;
+}
+
+.playPortada *{
+    font-size: 5em; 
+    color:whitesmoke;
+    transform: translate(-50%, -50%);
+    text-align:center;
+    visibility:hidden;
+}
+
+.lateral {
+    margin-top:10px;
+}
+
+#myCarousel {
+    padding:5px;
+    border:5px solid black;
+}
+
+.carousel-indicators {
+      left: 90%;
+}
+
+
+/*Trabajos*/
+
+.trabajos{
+    opacity: 1;
+    visibility:hidden;
+    position:absolute;
+    margin-top:-3%;
+}
+
+.trabajos img{   
+    margin-bottom: 20px; 
+}
+
+.sinopsis {
+    margin-right:1%;
+}
+
+.sinopsis strong {
+    font-size: 1.3em;   
+}
+
+.trabajos .col-sm-3 { 
+    z-index: 10;
+    position:relative;
+    display: block;
+}
+
+.trabajos img { 
+    border: 2px solid black;
+}
+
+.botonPlay{
+    z-index: 11;
+    font-size: 3em;
+    transform: translate(-50%, -50%);
+    text-decoration: none;
+    cursor: pointer;
+    visibility:hidden;
+    color: white;
+    position:absolute;
+}
+.botonPlay:hover{
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.numeroCirculo{
+    display:table;
+    padding-bottom: 10px;
+    padding-top:10px;
+    border-collapse: separate;
+    border-spacing: 5px 0px;
+}
+
+.controlBotones > .pantallaCompleta{
+    position:absolute;
+    margin-top:-5%;
+}
+
+.numeroCirculo a{
+    width:25px;
+    height:25px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%; 
+    background: white;
+    color:black;
+    cursor:pointer;
+
+}
+
+.numeroCirculo a:hover{
+    background:lightgray;
+}
+
+.numeroCirculo .seleccionado{  
+    background:gray ;
+}
+
+.selectorMovil {
+    margin-bottom:1%;
+}
+
+.trabajosVisible{
+    display: inline-block;   
+}
+
+.sinopsisPrincipal {
+    margin-top:3%;
+    font-size: 1.1em;
+    
+}
+
+/*Equipo*/
+
+.equipo{
+    margin-top:-2%;
+    visibility: hidden;   
+}
+
+
+.imagenEquipo {
+    width:100%;
+    position:absolute;
+    margin-top:1
+}
+
+.fotoBase {
+    margin: px;
+    padding:px;
+    opacity:0.3;
+}
+
+.imagenEquipo div{
+    height:100%; 
+    padding:0px;
+}
+
+.zonaHover:hover{
+    background-color:white;
+    opacity: 0.2
+}
+
+.imagenEquipo .clicable{
+    position:absolute;
+    width:100%;
+    padding:0px;
+}
+
+.textoFoto {
+    margin-top:10%;
+    position:absolute;
+}
+
+.textoFoto p {
+    display:none; 
+    font-weight:600; 
+}
+
+
+.imgEquipo {
+    display:none;
+}
+
+.equipoAtras {
+    display:none;
+}
+
+.fotoSarro {
+  visibility:visible; 
+    height:100%;
+    width:100%;
+}
+
+.fotoClick {
+    width:100%;
+}
+
+.textoClick {
+    width:90%;
+    text-align: justify;
+}
+
+/*Contacto*/
+
+.contacto{
+     visibility: hidden;  
+}
+
+.correoDupla {
+    display:inline-block;
+    margin-left:5%;
+    font-size:3em;
+    font-family:Alexbrush;
+}
+
+.form-contacto {
+    width:75%;
+}
+
+.carousel {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.instruccionesFormulario {
+    font-family:Lucida Sans Unicode;
+    font-size:1.5em;
+}
+
+.grupoCorreo {
+    display:block;
+    margin-bottom:2%;
+}
+
+.grupoCorreo *{
+    display:inline-block;
+}
+
+
+
+/*Blog*/
+
+.blog{
+     visibility: hidden;  
+}
+
+/*******************************************************/
+
+.main-text
+{
+    position: absolute;
+    top: 5px;
+    width: 96.66666666666666%;
+    color: #FFF;
+}
+
+
+
+#carrusel {
+    margin-left:10%;
+    margin-right: 10%;
+}
+
+.background {
+    position: fixed;
+    display: block;
+    width:100%;
+    height:100%;
+    background-image: url(../Fotos/4a0fe65cb4f7579c532243c72bc70bd4.jpg);
+    opacity: 0.25; 
+
+}
+
+
+.paginadoTrabajos {
+    margin-right: 20px;
+    font-size: 2em;
+}
+
+.controlBotones {
+    position:absolute;
+    display: block;
+    z-index:12;
+}
+
+.grupoTrabajos {
+    margin-top:12px;
+}
+
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+
+
+
+
+
+/*Javascript*/
+
+
+hr.flare {
+
+    height: 50px;
+
+    border-style: ridge;
+
+    border-color: black;
+
+    border-width: 2px 0 0 0;
+
+    border-radius: 20px;
+    
+    margin-bottom: 0px;
+
+}
+
+hr.flare:before {
+
+    display: block;
+
+    content: "";
+
+    height: 50px;
+
+    margin-top: -50px;
+
+    border-style: ridge;
+
+    border-color: black;
+
+    border-width: 0 0 2px 0;
+
+    border-radius: 20px;
+
+}
+
+/*Pruebas query márgenes versión móvil*/
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (max-width : 768px) {
+    
+/*Global y principal*/
+.row {
+  margin-left: -5px;
+  margin-right: -5px;
+} 
+    
+.navegacion{
+    margin-top: 2%;
+}
+
+.navegacion > li > a {
+    text-decoration:none;
+    color: black;
+    font-size: 100%;
+}
+    
+.iconos{
+	display:table;
+    width:50%;
+    table-layout: fixed;
+    margin-left: 25%;
+} 
+    
+.iconos a img{
+    margin-top:-5%;
+    width:80%;
+}
+    
+.navegacion > li > a {
+    text-decoration:none;
+    color: black;
+    font-size: 220%;
+}
+    
+/*Trabajos*/  
+    
+.trabajos{
+    margin-top:-50px;
+}
+    
+}
+
+/* Operaciones Javascript*/
+
+.error{
+    border:1px solid red;   
+}
+
+.btn-min-block
+{
+    min-width: 170px;
+    line-height: 26px;
+}
+
+.btn-clear{
+    color: #FFF;
+    background-color: transparent;
+    border-color: #FFF;
+    margin-right: 15px;
+}
+
+.btn-clear:hover{
+    color: #000;
+    background-color: #FFF;
+}
