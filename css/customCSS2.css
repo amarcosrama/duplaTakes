@@ -1,0 +1,15 @@
+/*Página principal*/
+
+.background {
+    position: fixed;
+    display: block;
+    width:100%;
+    height:100%;
+    background-image: url(../Fotos/4a0fe65cb4f7579c532243c72bc70bd4.jpg);
+    opacity: 0.25; 
+}
+
+.logoDupla{
+    width:60%;   
+    
+}
