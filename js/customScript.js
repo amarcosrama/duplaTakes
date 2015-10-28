@@ -1,53 +1,25 @@
-/*function sincronizar(){
-    var imgn = $('#myCarousel');
-    
-    var posicion = imgn.position(); //¿Offset?
-   // alert(imgn.attr('id'));
-    posicion.left=posicion.left+(imgn.width()/2);
-    posicion.top=posicion.top+(imgn.height()/2);
-    var boton = $('.playPortada *');
- //   alert(boton.attr('id'));
-    boton.css({visibility:'hidden'})
-    boton.css({top: posicion.top, left: posicion.left, position:'absolute', visibility:'visible'});
-    var trabajos = $('.trabajos');
-    var equipo = $('.equipo');
-    var contacto = $('.contacto');
-    var blog = $('.blog');
-    trabajos.css({visibility:'visible'});
-    equipo.css({visibility:'visible'});
-    contacto.css({visibility:'visible'});
-    blog.css({visibility:'visible'});
+function controlTrabajos(){
+    var controlLateral = $('.controlLateral');
+    controlLateral.slideToggle('medium');
     return;
-} */
-
-function ocultarBoton(){
-    var boton = $('.playPortada *');
- //   alert(boton.attr('id'));
-    boton.css({visibility:'hidden'});   
 }
 
 function verSlider(){
-        var activar = $(this).attr('id');
-        var ventanaNueva = $('.'+activar);
-    
-        if (!(ventanaNueva.hasClass('activo'))){
-           $('.activo').hide(200).removeClass('activo');
-            ventanaNueva.show(200).addClass('activo');
-            
-         // Apaño para sincronizar boton al volver a acceder a slider-main
-                
-            var boton = $('.playPortada *');
- //         alert(boton.attr('id'));
-            boton.css({visibility:'hidden'})
+    var activar = $(this).attr('id');
+    var ventanaNueva = $('.'+activar);
+    if (!(ventanaNueva.hasClass('activo')))
+    {
+        var ventanaAnteriorActiva = $('.activo');
+        if (ventanaAnteriorActiva.hasClass('trabajos')){
+            controlTrabajos();  
         }
-    
-        if (ventanaNueva.hasClass('slider-main')){
-            
-            setTimeout(sincronizar, 200);
-            
+        $('.activo').hide().removeClass('activo');
+        ventanaNueva.show().addClass('activo');
+        if (ventanaNueva.hasClass('trabajos')){
+            controlTrabajos();   
         }
-        return;
-        
+    }
+    return;        
 }
 
 
@@ -58,12 +30,7 @@ function imgShow(e){
     altura.left=altura.left+(imagen.width()/2);
     altura.top=altura.top+(imagen.height()/2);
     var boton =  imagen.siblings('.botonPlay');
- //   boton.css("visibility", "visible", "color", "white", "left", "500px");
     boton.css({color: 'white', visibility: 'visible', left: altura.left , top: altura.top})
-//  imagen.after("<a class='botonPlay glyphicon glyphicon-play-circle' href='"+link+"' style='color:white; left:"+altura.left+"px; top:"+altura.top+"px; position:absolute;'></a>");
-    
-//    imagen.after("<a class='botonPlay glyphicon glyphicon-play-circle' style='left:"+altura.left+"px; top:"+altura.top+"px; position:absolute; visibility:'visible''></a>");
-      
     imagen.fadeTo( "fast", 0.75 );
     e.stopPropagation;   
     return;
@@ -78,57 +45,6 @@ function imgHide(e) {
     return;
 }
 
-/*function validate(){
-    var imgn = $('.carousel-inner img').first();
-    var posicion = imgn.position(); //¿Offset?
-  //  alert(imgn.attr('id'));
-    posicion.left=posicion.left+(imgn.width()/2);
-    posicion.top=posicion.top+(imgn.height()/2);
-    var boton = $('.playPortada *');
- //   alert(boton.attr('id'));
-    boton.css({top: posicion.top, left: posicion.left, position:'absolute'});
-    return;
-}*/
-
-function sincronizar(){
-    var imgn = $('#myCarousel');
-    
-    var posicion = imgn.position(); //¿Offset?
-   // alert(imgn.attr('id'));
-    posicion.left=posicion.left+(imgn.width()/2);
-    posicion.top=posicion.top+(imgn.height()/2);
-    var boton = $('.playPortada *');
- //   alert(boton.attr('id'));
-    boton.css({top: posicion.top, left: posicion.left, position:'absolute', visibility:'visible'});
-    var trabajos = $('.trabajos');
-    var equipo = $('.equipo');
-    var contacto = $('.contacto');
-    var blog = $('.blog');
-    trabajos.css({visibility:'visible'});
-    equipo.css({visibility:'visible'});
-    contacto.css({visibility:'visible'});
-    blog.css({visibility:'visible'});
-    return;
-}
-
-/* function enseniarTrabajos (){
-    
-    var botonTrabajos = $(this);
-    if (!(botonTrabajos.hasClass('seleccionado')))
-        {
-        var botonAnterior = $('.seleccionado');
-        botonAnterior.removeClass('seleccionado');
-        var activarTrabajo = botonTrabajos.attr('class');
-        var trabajosMostrar = $('#'+botonTrabajos.attr('class'));
-        var rowVisible = $('.trabajosVisible');
-        rowVisible.removeClass('trabajosVisible');
-        trabajosMostrar.addClass('trabajosVisible');
-        botonTrabajos.addClass('seleccionado');
-        }
-     return;  
-} */
-
-
  function enseniarTrabajos (){
     
     var botonTrabajos = $(this);
@@ -140,10 +56,10 @@ function sincronizar(){
         var trabajosMostrar = $('#'+botonTrabajos.attr('class'));
         var rowVisible = $('.trabajosVisible');
         rowVisible.removeClass('trabajosVisible');
-        rowVisible.slideUp("slow").hide(500);
+        rowVisible.slideUp("slow").fadeOut(500);
         trabajosMostrar.addClass('trabajosVisible');
         botonTrabajos.addClass('seleccionado');
-        trabajosMostrar.show(500);
+        trabajosMostrar.fadeIn(1000);
         }
      return;  
 } 
@@ -152,7 +68,7 @@ function posicionBotones (){
     var controles = $('.controlBotones');
     var trabajos = $('.trabajos');
     var posicion = $('.trabajos').position();
-    controles.css({top: posicion.top+trabajos.height()-controles.height()})
+    controles.css({top: posicion.top+trabajos.height()})
     return;
 }
 
@@ -209,29 +125,29 @@ function activarFoto (){
     
     if (fotoClick.hasClass('fotoSarro')){
         var fotoGrande = $('.fotoBase');
-        fotoGrande.fadeTo(500, 0.2);
+        fotoGrande.fadeTo(300, 0.2);
         var imagenPinchada = $('.imgEquipo');
         imagenPinchada.attr("src","Fotos/sarroDifusa.png");
-        imagenPinchada.show(500, function(){;
+        imagenPinchada.show(300, function(){;
         $('.equipoAtras').show();
         $('.textoClick').show()});
         return;
     }
     else if (fotoClick.hasClass('fotoHugo')){
         var fotoGrande = $('.fotoBase');
-        fotoGrande.fadeTo(500, 0.2);
+        fotoGrande.fadeTo(300, 0.2);
         var imagenPinchada = $('.imgEquipo');
         imagenPinchada.attr("src","Fotos/hugoDifusa.png");
-        imagenPinchada.show(500, function(){;
+        imagenPinchada.show(300, function(){;
         $('.equipoAtras').show()});
         return;
     }   
     else if (fotoClick.hasClass('fotoDani')){
         var fotoGrande = $('.fotoBase');
-        fotoGrande.fadeTo(500, 0.2);
+        fotoGrande.fadeTo(300, 0.2);
         var imagenPinchada = $('.imgEquipo');
         imagenPinchada.attr("src","Fotos/daniDifusa.png");
-        imagenPinchada.show(500, function(){;
+        imagenPinchada.show(300, function(){;
         $('.equipoAtras').show()});
         return;
     }
@@ -243,10 +159,10 @@ function deshacerEquipo(){
     
     var imagenEquipo = $('.imgEquipo');
     imagenEquipo.removeAttr("src");
-    imagenEquipo.hide(500);
+    imagenEquipo.hide(300);
     $('.equipoAtras').hide();
     var fotoGrande = $('.fotoBase');
-    fotoGrande.fadeTo(500, 1);
+    fotoGrande.fadeTo(300, 1);
     var espacioClick = $('.clicable');
     espacioClick.show();
     $('.imagenEquipo div').each(function() {
@@ -259,10 +175,9 @@ function deshacerEquipo(){
 
 $(document).ready(function() {
 	$('.interactivo').hide();
-    $('.activo').show();
+    $('.activo').show();    
     $('.trabajosRow').hide();
     $('.trabajosVisible').show();
-    setTimeout(sincronizar, 200);
     setTimeout(posicionBotones, 300);
     $('#slider-main').click(verSlider);
     $('.navegacion a').click(verSlider);
@@ -275,7 +190,7 @@ $(document).ready(function() {
     
     $('#equipo').one("click", function() {
         var fotoGrande = $('.fotoBase');
-        fotoGrande.fadeTo(1000, 1);
+        fotoGrande.fadeTo(300, 1);
         setTimeout(escalarFotoEquipo, 250);
         return;
     });
@@ -370,15 +285,5 @@ $(window).resize(function() {
     jarenauer.height(fotoGrande.height());
     
     //
-    
-    var imgn = $('#myCarousel').first();
-    var posicion = imgn.position(); //¿Offset?
-  //  alert(imgn.attr('id'));
-    posicion.left=posicion.left+(imgn.width()/2);
-    posicion.top=posicion.top+(imgn.height()/2);
-    var boton = $('.playPortada *');
-  //  alert(boton.attr('id'));
- //   boton.css({fontSize:'55px'});
-    boton.css({top: posicion.top, left: posicion.left, position:'absolute'});
-    return;
+
 });

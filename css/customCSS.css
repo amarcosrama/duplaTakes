@@ -4,8 +4,8 @@
 }
 
 @font-face {
-    font-family:'Comiz';
-    src: url(../res/SchoolNotes.ttf);
+    font-family:'frescoStamp';
+    src:url('../res/frescoStamp.ttf');
 }
 
 /*Global*/
@@ -15,13 +15,12 @@ body {
     overflow: scroll;
 }
 
-
 .alexbrush {
     font-family: Alexbrush;
 }
 
-.comiz {
-    font-family: Comiz;
+.frescoStamp {
+    font-family: frescoStamp;
 }
 
 mayuscula{
@@ -89,7 +88,8 @@ mayuscula{
     text-align: center;
     padding: 0px;
     margin-bottom:0px;
-    font-family: Comiz;
+    font-family: frescoStamp;
+    font-size:0.8em;
 }
 
 .navegacion > li > a {
@@ -135,7 +135,6 @@ hr{
 
 .trabajos{
     opacity: 1;
-    visibility:hidden;
     position:absolute;
     margin-top:-3%;
 }
@@ -187,7 +186,7 @@ hr{
 
 .controlBotones > .pantallaCompleta{
     position:absolute;
-    margin-top:-5%;
+    margin-top:-15%;
 }
 
 .numeroCirculo a{
@@ -228,8 +227,7 @@ hr{
 /*Equipo*/
 
 .equipo{
-    margin-top:-2%;
-    visibility: hidden;   
+    margin-top:-2%;  
 }
 
 
@@ -297,8 +295,7 @@ hr{
 
 /*Contacto*/
 
-.contacto{
-     visibility: hidden;  
+.contacto{ 
 }
 
 .correoDupla {
@@ -335,8 +332,7 @@ hr{
 
 /*Blog*/
 
-.blog{
-     visibility: hidden;  
+.blog{ 
 }
 
 /*******************************************************/
@@ -376,6 +372,7 @@ hr{
     position:absolute;
     display: block;
     z-index:12;
+    margin-top: 2%;
 }
 
 .grupoTrabajos {
@@ -504,4 +501,39 @@ and (max-width : 768px) {
 .btn-clear:hover{
     color: #000;
     background-color: #FFF;
+}
+.well {
+    margin-top: 0.2%;
+}
+
+.controlLateral {
+    font-family: frescoStamp;
+    width:100%;
+    display: none;
+}
+
+.controlLateral p{
+    font-size: 2em;
+    text-align: center;
+}
+
+indice {
+    color:red;
+}
+
+.controlesTrabajos {
+    width:100%;
+    text-align: center;
+    font-size: 2em;
+    display:inline-block;
+}
+
+.controlesTrabajos *{
+    color:coral;
+    padding:5px;
+}
+
+.controlesTrabajos *:hover{
+    text-decoration: none;
+    color:red;
 }
