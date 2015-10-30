@@ -1,20 +1,30 @@
+// Aparición y desaparición del control trabajos
+
 function controlTrabajos(){
     var controlLateral = $('.controlLateral');
     controlLateral.slideToggle('medium');
     return;
 }
 
+// Control de pestañas
+
 function verSlider(){
     var activar = $(this).attr('id');
     var ventanaNueva = $('.'+activar);
-    if (!(ventanaNueva.hasClass('activo')))
+    
+    //No es la ventana activa actualmente? ->
+    if (!(ventanaNueva.hasClass('activo')))  
     {
         var ventanaAnteriorActiva = $('.activo');
-        if (ventanaAnteriorActiva.hasClass('trabajos')){
+    
+        // Excepción para plegar control trabajos
+        if (ventanaAnteriorActiva.hasClass('trabajos')){    
             controlTrabajos();  
         }
         $('.activo').hide().removeClass('activo');
         ventanaNueva.show().addClass('activo');
+        
+        // Excepción para desplegar control trabajos
         if (ventanaNueva.hasClass('trabajos')){
             controlTrabajos();   
         }
@@ -23,6 +33,7 @@ function verSlider(){
 }
 
 
+// Aparición del botón play en cada imagen de "trabajos"
 
 function imgShow(e){
     var imagen = $(this).find('img');
@@ -37,6 +48,8 @@ function imgShow(e){
 }
 
 
+// Desparición del botón play en cada imagen de "trabajos"
+
 function imgHide(e) {
     var imagen = $(this).find('img');
     imagen.fadeTo( "fast", 1 ); 
@@ -45,32 +58,65 @@ function imgHide(e) {
     return;
 }
 
- function enseniarTrabajos (){
-    
-    var botonTrabajos = $(this);
-    if (!(botonTrabajos.hasClass('seleccionado')))
-        {
-        var botonAnterior = $('.seleccionado');
-        botonAnterior.removeClass('seleccionado');
-        var activarTrabajo = botonTrabajos.attr('class');
-        var trabajosMostrar = $('#'+botonTrabajos.attr('class'));
-        var rowVisible = $('.trabajosVisible');
-        rowVisible.removeClass('trabajosVisible');
-        rowVisible.slideUp("slow").fadeOut(500);
-        trabajosMostrar.addClass('trabajosVisible');
-        botonTrabajos.addClass('seleccionado');
-        trabajosMostrar.fadeIn(1000);
-        }
-     return;  
-} 
+// Transición entre páginas de trabajo
 
-function posicionBotones (){       
-    var controles = $('.controlBotones');
-    var trabajos = $('.trabajos');
-    var posicion = $('.trabajos').position();
-    controles.css({top: posicion.top+trabajos.height()})
+function transicionTrabajos(){
+    var paginasDeTrabajos = 2;   // Limita el número de páginas en la pestaña trabajos
+    
+    var botonPulsado = $(this).attr('id');
+    var valorIndice = $('indice').html();
+    if (botonPulsado=="trabajosIzda"){
+        if (valorIndice<=1) return;
+        else{ 
+            valorIndice--;
+            $('indice').html(valorIndice);
+            var paginaParaActivar = $('#trabajos'+valorIndice);
+            var paginaParaDesactivar = $('.trabajosVisible');
+            paginaParaDesactivar.removeClass('trabajosVisible');
+            paginaParaDesactivar.fadeOut(200, function(){
+                paginaParaActivar.addClass('trabajosVisible').fadeIn(200);
+            }); 
+            return; 
+        }
+    }
+    else{
+        if (valorIndice>=paginasDeTrabajos) return;
+        else{
+            valorIndice++;
+            $('indice').html(valorIndice);
+            var paginaParaActivar = $('#trabajos'+valorIndice);
+            var paginaParaDesactivar = $('.trabajosVisible');
+            paginaParaDesactivar.removeClass('trabajosVisible');
+            paginaParaDesactivar.fadeOut(200, function(){
+                paginaParaActivar.addClass('trabajosVisible').fadeIn(200);
+            }); 
+            return; 
+        }
+    }
     return;
+       
 }
+
+
+// Validar campos pestaña contacto
+
+function validar(){
+    var emailContacto = $('#emailContacto');
+    var textoContacto = $('#textoContacto');
+    if(emailContacto.val()=="") { //Si este campo está vacío
+    alert('No has escrito tu e-Mail'); // Mensaje a mostrar
+    return false; //devolvemos un valor negativo
+  }
+
+  if(textoContacto.val()=="") { //Si este campo está vacío
+    alert('¡No has escrito nada!'); // Mensaje a mostrar
+    return false; //devolvemos un valor negativo
+  }
+    alert('error');
+    return true; // Si esta todo bien, devolvemos Ok, positivo
+}
+
+//Validación formulario mail contacto
 
 function validarMail (){
     var formulario = $(this);
@@ -91,21 +137,7 @@ function validarMail (){
     }
 }
 
-function validar(){
-    var emailContacto = $('#emailContacto');
-    var textoContacto = $('#textoContacto');
-    if(emailContacto.val()=="") { //Si este campo está vacío
-    alert('No has escrito tu e-Mail'); // Mensaje a mostrar
-    return false; //devolvemos un valor negativo
-  }
-
-  if(textoContacto.val()=="") { //Si este campo está vacío
-    alert('¡No has escrito nada!'); // Mensaje a mostrar
-    return false; //devolvemos un valor negativo
-  }
-    alert('hitler');
-    return true; // Si esta todo bien, devolvemos Ok, positivo
-}
+// Escala la zona interactiva 'imagenEquipo' al tamaño de 'fotoBase', la imagen proporcionada de referencia
 
 function escalarFotoEquipo(){
     var jarenauer = $('.imagenEquipo');
@@ -113,6 +145,8 @@ function escalarFotoEquipo(){
     jarenauer.height(fotoGrande.height());
     return;
 }
+
+// Activa los espacios interactivos dentro de la foto en la pestaña 'Equipo'
 
 function activarFoto (){
     
@@ -155,6 +189,8 @@ function activarFoto (){
     return;
 }
 
+// Desactiva opción elegida en la foto de 'equipo', rollback a estado inicial
+
 function deshacerEquipo(){
     
     var imagenEquipo = $('.imgEquipo');
@@ -174,37 +210,43 @@ function deshacerEquipo(){
 
 
 $(document).ready(function() {
+    
+    // Sincronizo pestaña inicial a visualizar
 	$('.interactivo').hide();
-    $('.activo').show();    
+    $('.activo').show();
+    
+    // Selecciono primera ficha de pestaña trabajos a mostrar por defecto
     $('.trabajosRow').hide();
     $('.trabajosVisible').show();
-    setTimeout(posicionBotones, 300);
+    
+    // Pongo en espera activa las pestañas y el icono de Dupla
     $('#slider-main').click(verSlider);
     $('.navegacion a').click(verSlider);
-    $('.numeroCirculo *').click(enseniarTrabajos);
+    
+    // Pongo en espera activa el control de paginado de la pestaña trabajos
+    $('.controlesTrabajos *').click(transicionTrabajos);
+    
+    // Espera activa para la validación mail y el envío del formulario
     $('#emailContacto').blur(validarMail);
     $('#formContacto').submit(validar);
  /*   $('#equipo').click(function() {
             setTimeout(peter, 400);
                        }); */
     
+    // Difuminado de entrada para la imagen de 'equipo'. Solo primera vez para agilizar navegación
     $('#equipo').one("click", function() {
         var fotoGrande = $('.fotoBase');
         fotoGrande.fadeTo(300, 1);
         setTimeout(escalarFotoEquipo, 250);
         return;
     });
+    
     $('.imagenEquipo a').click(activarFoto);
     $('.equipoAtras').click(deshacerEquipo);
     $('.trabajos .col-sm-3').mouseenter(imgShow);
     $('.trabajos .col-sm-3').mouseleave(imgHide);
     
-    
-
-    
-    
-    
-    
+  
     
     // BOOTSTRAP 3.0 - Open YouTube Video Dynamicaly in Modal Window
     // Modal Window for dynamically opening videos
